@@ -9,6 +9,10 @@ class Company(models.Model):
     added_date = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
 
+
+    def __str__(self) -> str:
+        return self.name + self.location
+
 class Employee(models.Model):
     name = models.CharField(max_length=50)
     email = models.CharField(max_length=50)
