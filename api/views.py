@@ -1,11 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from rest_framework import viewsets
 from api.models import Company,Employee
 from api.serializers import CompanySerializer,EmployeeSerializer
 from rest_framework.decorators import action
 from rest_framework.response import Response
 # Create your views here.
+
+
+
+
 class CompanyViewSet(viewsets.ModelViewSet):
+
     queryset= Company.objects.all()
     serializer_class = CompanySerializer
 
@@ -30,5 +35,3 @@ class EmployeeViewSet(viewsets.ModelViewSet):
     serializer_class = EmployeeSerializer
 
 
-def about(request):
-    return HttpResponse("This is the about page.")
