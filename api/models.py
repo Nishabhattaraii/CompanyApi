@@ -21,7 +21,12 @@ class Employee(models.Model):
     name = models.CharField(max_length=50)
     email = models.CharField(max_length=50)
     address = models.CharField(max_length=200)
-    phone = models.CharField(max_length=50)  # Corrected typo: removed extra "models."
+    phone = models.CharField(max_length=50)  
     about = models.TextField()
     position = models.CharField(max_length=50, choices=(('Manager', 'Manager'), ('Software Developer', 'Software Developer'), ('Project Leader', 'PL')))  # Corrected typo: adjusted max_length and choices
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)  # Corrected typo: changed 'comapny' to 'company'
+    company = models.ForeignKey(Company, on_delete=models.CASCADE) 
+
+class Faculty(models.Model):
+    name= models.CharField(max_length=50)
+    department=models.CharField(max_length=50, choices=(('Science','Science'),('Management','Management'),('Humanities','Humanities')))
+    Experience=models.CharField(max_length=50)

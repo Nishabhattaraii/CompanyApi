@@ -1,5 +1,5 @@
 from rest_framework import serializers # type: ignore
-from api.models import Company,Employee
+from api.models import Company,Employee, Faculty
 
 
 class CompanySerializer(serializers.HyperlinkedModelSerializer):
@@ -12,4 +12,9 @@ class EmployeeSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model=Employee
+        fields="__all__"
+
+class FacultySerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model=Faculty
         fields="__all__"

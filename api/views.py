@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from rest_framework import viewsets
-from api.models import Company,Employee
-from api.serializers import CompanySerializer,EmployeeSerializer
+from api.models import Company,Employee, Faculty
+from api.serializers import CompanySerializer,EmployeeSerializer, FacultySerializer
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from .forms import LoginPage
@@ -36,6 +36,13 @@ class EmployeeViewSet(viewsets.ModelViewSet):
     queryset= Employee.objects.all()
     serializer_class = EmployeeSerializer
 
+
+class FacutlyViewSet(viewsets.ModelViewSet):
+    queryset= Faculty.objects.all()
+    serializer_class = FacultySerializer
+
+
+
 def login_page(request):
     form = LoginPage()
     if request.method == 'POST':
@@ -50,3 +57,6 @@ def login_page(request):
             else:
                 form.add_error(None, 'Invalid username or password')
     return render(request, 'myapp/login.html', {'form': form})
+
+def faculty(request):
+    pass
