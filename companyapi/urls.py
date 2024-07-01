@@ -22,4 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', views.home_page),
     path('api/v1/',include('api.urls')),
+    path('login/', views.login_page, name='login_page'),
+
 ]

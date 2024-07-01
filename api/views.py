@@ -4,6 +4,8 @@ from api.models import Company,Employee
 from api.serializers import CompanySerializer,EmployeeSerializer
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from .forms import LoginPage
+from django.contrib.auth import authenticate, login
 # Create your views here.
 
 
@@ -34,4 +36,17 @@ class EmployeeViewSet(viewsets.ModelViewSet):
     queryset= Employee.objects.all()
     serializer_class = EmployeeSerializer
 
-
+def login_page(request):
+    form = LoginPage()
+    if request.method == 'POST':
+        form = LoginPage(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('companies')  # Redirect to your desired page
+            else:
+                form.add_error(None, 'Invalid username or password')
+    return render(request, 'myapp/login.html', {'form': form})
